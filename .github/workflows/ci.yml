@@ -6,6 +6,7 @@ on:
       - main
 
 jobs:
+
   build:
     runs-on: ubuntu-latest
 
@@ -28,9 +29,23 @@ jobs:
       - name: Maven Build Project
         run: mvn clean package
 
-      - name: Upload War Artifact
+      - name: Upload WAR Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: emplyent-management-webapp
+          name: employee-management-webapp
           path: target/*.war
-      
+
+  download-artifact:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download WAR Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: employee-management-webapp
+
+      - name: Verify Downloaded Artifact
+        run: |
+          pwd
+          ls -R
