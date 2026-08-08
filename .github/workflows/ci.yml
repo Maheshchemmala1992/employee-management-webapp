@@ -83,3 +83,6 @@ jobs:
       
       - name: Tag Docker Image
         run: docker tag employee-management-webapp:latest maheshmaha/employee-management-webapp:latest
+
+      - name: Push Docker Image
+        run: docker push maheshmaha/employee-management-webapp:latest
